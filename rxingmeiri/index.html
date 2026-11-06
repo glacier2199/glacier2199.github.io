@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>r星每日大赛mdrs聚集地入口-mdrs每日大赛聚集地入口_r星大赛mdrs入口导航</title>
+<meta name="description" content="r星每日大赛mdrs聚集地入口页面，汇总mdrs每日大赛的聚集地入口说明、每日热点内容入口与访问路径，帮助访问者快速找到r星每日大赛mdrs聚集地入口并了解聚集地的内容构成与使用方式。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23151a2b'/%3E%3Cpath d='M32 10l5.6 12.6L51 24l-9.6 9.2 2.4 13.4L32 40.4 20.2 46.6l2.4-13.4L13 24l13.4-1.4z' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#12151f;
+    --ink-2:#1c2130;
+    --paper:#f6f4ef;
+    --card:#ffffff;
+    --line:#e2ddd2;
+    --gold:#d9a521;
+    --gold-deep:#a87d10;
+    --text:#2b2f3a;
+    --muted:#6c7180;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--text);
+    line-height:1.75;
+    font-size:16px;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 20px;}
+  .skip{position:absolute;left:-9999px;}
+  .skip:focus{left:12px;top:12px;background:#fff;padding:8px 14px;border-radius:8px;z-index:99;}
+
+  /* header */
+  header.site{
+    background:var(--ink);
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:20;
+    border-bottom:1px solid #2a3044;
+  }
+  .head-inner{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:12px 0;
+    flex-wrap:wrap;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex:1 1 auto;
+    min-width:0;
+  }
+  .logo .mark{
+    width:38px;height:38px;
+    flex:0 0 38px;
+    background:linear-gradient(150deg,#ffd166,#c98f12);
+    border-radius:10px;
+    display:grid;place-items:center;
+  }
+  .logo .mark svg{width:24px;height:24px;}
+  .logo b{
+    font-size:16px;
+    letter-spacing:.3px;
+    line-height:1.35;
+    font-weight:700;
+    display:block;
+    word-break:break-word;
+  }
+  nav.main{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    order:3;
+    width:100%;
+  }
+  nav.main a{
+    font-size:14px;
+    padding:6px 12px;
+    border-radius:999px;
+    color:#c9cede;
+    border:1px solid transparent;
+    transition:.2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{
+    color:#fff;
+    border-color:#3b435c;
+    background:#222839;
+    outline:none;
+  }
+  .head-cta{
+    display:inline-block;
+    background:var(--gold);
+    color:#231a00;
+    font-weight:700;
+    font-size:14px;
+    padding:8px 18px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .head-cta:hover{background:#efc04a;}
+
+  /* hero */
+  .hero{
+    background:
+      radial-gradient(900px 340px at 82% -60px, rgba(217,165,33,.22), transparent 70%),
+      linear-gradient(180deg,#12151f 0%,#1a1f2e 100%);
+    color:#fff;
+    padding:46px 0 52px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.35fr .9fr;
+    gap:38px;
+    align-items:center;
+  }
+  .kicker{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    letter-spacing:.12em;
+    color:var(--gold);
+    border:1px solid rgba(217,165,33,.45);
+    padding:4px 12px;
+    border-radius:999px;
+    margin-bottom:18px;
+  }
+  h1{
+    font-size:clamp(25px,4vw,40px);
+    line-height:1.3;
+    margin:0 0 16px;
+    font-weight:800;
+    letter-spacing:.5px;
+    word-break:break-word;
+  }
+  .hero p.lead{
+    margin:0 0 26px;
+    color:#c8cdda;
+    font-size:16px;
+    max-width:36em;
+  }
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-block;
+    padding:12px 24px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:15px;
+    transition:.2s;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--gold);color:#221900;}
+  .btn-primary:hover{background:#efc04a;}
+  .btn-ghost{border-color:#495068;color:#fff;}
+  .btn-ghost:hover{background:#252b3d;}
+  .hero-figure{
+    background:#1e2434;
+    border:1px solid #2f3649;
+    border-radius:18px;
+    padding:18px;
+  }
+  .hero-figure figcaption{
+    font-size:12.5px;
+    color:#8f96a8;
+    margin-top:10px;
+    text-align:center;
+  }
+  .stat-row{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-top:22px;
+  }
+  .stat{
+    background:rgba(255,255,255,.05);
+    border:1px solid #2c3345;
+    border-radius:12px;
+    padding:12px 10px;
+    text-align:center;
+  }
+  .stat b{display:block;font-size:18px;color:var(--gold);}
+  .stat span{font-size:12px;color:#a6acbd;}
+
+  /* sections */
+  section{padding:52px 0;}
+  .sec-head{max-width:44em;margin-bottom:28px;}
+  .sec-head h2{
+    font-size:clamp(21px,2.6vw,27px);
+    margin:0 0 10px;
+    color:var(--ink);
+    font-weight:800;
+    letter-spacing:.3px;
+  }
+  .sec-head p{margin:0;color:var(--muted);font-size:15px;}
+  .tag{
+    display:inline-block;
+    font-size:12px;
+    letter-spacing:.14em;
+    color:var(--gold-deep);
+    font-weight:700;
+    margin-bottom:8px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .card .ico{
+    width:42px;height:42px;border-radius:11px;
+    background:#fbf3dd;
+    display:grid;place-items:center;
+  }
+  .card .ico svg{width:22px;height:22px;}
+  .card h3{margin:0;font-size:17px;color:var(--ink);font-weight:700;}
+  .card p{margin:0;font-size:14.5px;color:#565b68;}
+  .card a.more{
+    margin-top:auto;
+    font-size:14px;
+    font-weight:700;
+    color:var(--gold-deep);
+  }
+  .card a.more:hover{text-decoration:underline;}
+
+  /* entry list */
+  .entries{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .entry{
+    display:grid;
+    grid-template-columns:56px 1fr auto;
+    gap:16px;
+    align-items:center;
+    padding:18px 22px;
+    border-bottom:1px solid var(--line);
+  }
+  .entry:last-child{border-bottom:0;}
+  .entry .num{
+    font-size:15px;
+    font-weight:800;
+    color:#b9b3a4;
+    letter-spacing:.05em;
+  }
+  .entry h3{margin:0 0 3px;font-size:16px;color:var(--ink);}
+  .entry p{margin:0;font-size:14px;color:var(--muted);}
+  .entry .go{
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--gold-deep);
+    border:1px solid #e8dcbc;
+    background:#fdf8ec;
+    padding:7px 15px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .entry .go:hover{background:#f8eed6;}
+
+  /* two column */
+  .split{
+    display:grid;
+    grid-template-columns:1.25fr .85fr;
+    gap:32px;
+    align-items:start;
+  }
+  .prose h2{
+    font-size:clamp(20px,2.4vw,25px);
+    margin:0 0 14px;
+    color:var(--ink);
+    font-weight:800;
+  }
+  .prose p{margin:0 0 14px;font-size:15.5px;}
+  .prose p:last-child{margin-bottom:0;}
+  .aside-box{
+    background:var(--ink);
+    color:#dfe3ee;
+    border-radius:var(--radius);
+    padding:26px;
+  }
+  .aside-box h3{
+    margin:0 0 12px;
+    font-size:16px;
+    color:var(--gold);
+    font-weight:700;
+    letter-spacing:.04em;
+  }
+  .aside-box ul{margin:0;padding-left:18px;font-size:14.5px;color:#c3c9d8;}
+  .aside-box li{margin-bottom:9px;}
+  .aside-box li:last-child{margin-bottom:0;}
+
+  /* search */
+  .searchbar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+  }
+  .searchbar input{
+    flex:1 1 240px;
+    min-width:0;
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:10px;
+    padding:11px 14px;
+    font-size:15px;
+    color:var(--text);
+    font-family:inherit;
+  }
+  .searchbar input:focus{outline:2px solid #e4c778;outline-offset:1px;}
+  .searchbar button{
+    border:0;
+    background:var(--ink);
+    color:#fff;
+    font-weight:700;
+    font-size:15px;
+    padding:11px 24px;
+    border-radius:10px;
+    cursor:pointer;
+    font-family:inherit;
+    transition:.2s;
+  }
+  .searchbar button:hover{background:#2a3145;}
+  #searchHint{font-size:14px;color:var(--muted);min-height:22px;}
+  .entry.hidden{display:none;}
+
+  /* notes */
+  .notes{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+  }
+  .note{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:4px solid var(--gold);
+    border-radius:10px;
+    padding:20px 22px;
+  }
+  .note h3{margin:0 0 8px;font-size:16px;color:var(--ink);}
+  .note p{margin:0;font-size:14.5px;color:#565b68;}
+
+  /* footer */
+  footer.site{
+    background:var(--ink);
+    color:#a9b0c1;
+    padding:38px 0 26px;
+    font-size:14px;
+  }
+  .foot-top{
+    display:flex;
+    gap:26px;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding-bottom:22px;
+    border-bottom:1px solid #2b3245;
+  }
+  .foot-brand{max-width:34em;}
+  .foot-brand strong{
+    display:block;
+    color:#fff;
+    font-size:15px;
+    margin-bottom:8px;
+    font-weight:700;
+  }
+  .foot-nav{display:flex;gap:20px;flex-wrap:wrap;}
+  .foot-nav a:hover{color:var(--gold);}
+  .foot-bottom{
+    padding-top:18px;
+    display:flex;
+    gap:14px;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    font-size:13px;
+    color:#7d8496;
+  }
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-figure{order:2;}
+    .cards{grid-template-columns:1fr 1fr;}
+    .split{grid-template-columns:1fr;}
+    .notes{grid-template-columns:1fr;}
+  }
+  @media (max-width:620px){
+    body{font-size:15.5px;}
+    .hero{padding:34px 0 40px;}
+    section{padding:38px 0;}
+    .cards{grid-template-columns:1fr;}
+    .entry{
+      grid-template-columns:1fr auto;
+      gap:10px;
+      padding:16px 16px;
+    }
+    .entry .num{display:none;}
+    .entry h3{font-size:15.5px;}
+    .entry p{font-size:13.5px;}
+    .stat-row{grid-template-columns:repeat(3,1fr);gap:8px;}
+    .stat b{font-size:16px;}
+    .stat span{font-size:11px;}
+    nav.main a{font-size:13px;padding:5px 10px;}
+    .head-cta{padding:7px 14px;font-size:13px;}
+    .logo b{font-size:14.5px;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要内容</a>
+
+<header class="site">
+  <div class="wrap head-inner">
+    <div class="logo">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2.5l2.3 5.2 5.6.6-4.2 3.8 1.2 5.5L12 14.8 7.1 17.6l1.2-5.5L4.1 8.3l5.6-.6z" fill="#241a00"/></svg>
+      </span>
+      <b>r星每日大赛mdrs聚集地入口</b>
+    </div>
+    <a class="head-cta" href="#entries">进入聚集地入口</a>
+    <nav class="main" aria-label="主导航">
+      <a href="#main">首页</a>
+      <a href="#entries">入口目录</a>
+      <a href="#what">聚集地说明</a>
+      <a href="#search">快速查找</a>
+      <a href="#notes">访问须知</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker">MDRS · 每日聚集地</span>
+        <h1 id="hero-title">r星每日大赛mdrs聚集地入口</h1>
+        <p class="lead">这里是 r星每日大赛mdrs聚集地入口 的导航首页。页面把 mdrs 每日大赛的聚集地入口按类别排好，说明每个入口对应的内容方向，方便你从首屏直达当日聚集地，再按需查看规则说明与访问须知。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#entries">查看聚集地入口目录</a>
+          <a class="btn btn-ghost" href="#what">了解聚集地构成</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>每日</b><span>聚集地更新节奏</span></div>
+          <div class="stat"><b>4 类</b><span>入口内容分类</span></div>
+          <div class="stat"><b>1 页</b><span>集中导航</span></div>
+        </div>
+      </div>
+      <figure class="hero-figure" style="margin:0;">
+        <svg viewBox="0 0 320 200" role="img" aria-label="聚集地入口示意插画">
+          <rect x="0" y="0" width="320" height="200" rx="12" fill="#1a2030"/>
+          <circle cx="66" cy="60" r="26" fill="none" stroke="#3b435c" stroke-width="2"/>
+          <path d="M66 40l4.5 10.4 11.3 1.2-8.4 7.6 2.4 11.1L66 64.6l-9.8 5.7 2.4-11.1-8.4-7.6 11.3-1.2z" fill="#d9a521"/>
+          <rect x="118" y="34" width="160" height="10" rx="5" fill="#39415a"/>
+          <rect x="118" y="56" width="118" height="8" rx="4" fill="#2d3448"/>
+          <rect x="118" y="74" width="140" height="8" rx="4" fill="#2d3448"/>
+          <rect x="34" y="112" width="252" height="26" rx="8" fill="#232a3c"/>
+          <rect x="46" y="120" width="60" height="10" rx="5" fill="#d9a521"/>
+          <rect x="118" y="120" width="90" height="10" rx="5" fill="#3b435c"/>
+          <rect x="34" y="150" width="120" height="26" rx="8" fill="#232a3c"/>
+          <rect x="46" y="158" width="52" height="10" rx="5" fill="#3b435c"/>
+          <rect x="166" y="150" width="120" height="26" rx="8" fill="#232a3c"/>
+          <rect x="178" y="158" width="52" height="10" rx="5" fill="#3b435c"/>
+        </svg>
+        <figcaption>聚集地入口总览示意 · 分类导航结构</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="entries">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">入口目录</span>
+        <h2>r星每日大赛mdrs聚集地入口分类导航</h2>
+        <p>下方按内容方向列出四类聚集地入口。每条入口说明它承载的内容，点击右侧按钮可跳到对应的本页说明区块，先看清再进入。</p>
+      </div>
+      <div class="entries" id="entryList">
+        <div class="entry">
+          <span class="num">01</span>
+          <div>
+            <h3>每日聚集地主入口</h3>
+            <p>当日 mdrs 聚集地的主通道，汇总当天更新的内容板块，是寻找 r星每日大赛mdrs聚集地入口 时最先查看的位置。</p>
+          </div>
+          <a class="go" href="#what">查看说明</a>
+        </div>
+        <div class="entry">
+          <span class="num">02</span>
+          <div>
+            <h3>热点内容入口</h3>
+            <p>集中展示当日讨论度较高的内容条目，按时间顺序排列，适合想快速了解聚集地当天热点的访问者。</p>
+          </div>
+          <a class="go" href="#search">按词查找</a>
+        </div>
+        <div class="entry">
+          <span class="num">03</span>
+          <div>
+            <h3>规则与说明入口</h3>
+            <p>说明聚集地的内容组织方式、条目来源与浏览顺序，帮助第一次接触 mdrs 聚集地的人建立基本认识。</p>
+          </div>
+          <a class="go" href="#notes">阅读须知</a>
+        </div>
+        <div class="entry">
+          <span class="num">04</span>
+          <div>
+            <h3>常见问题入口</h3>
+            <p>整理访问 r星每日大赛mdrs聚集地入口 时最常遇到的疑问，包括入口失效、内容更新与设备适配等问题。</p>
+          </div>
+          <a class="go" href="#faq">查看问答</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="what">
+    <div class="wrap split">
+      <div class="prose">
+        <span class="tag">聚集地说明</span>
+        <h2>这个聚集地入口包含什么</h2>
+        <p>r星每日大赛mdrs聚集地入口 是一个以“每日”为节奏的内容聚集地导航页。它的核心作用不是替代内容本身，而是把分散的入口整理到一页之内：主入口对应当日更新，热点入口对应讨论集中的条目，说明入口负责解释规则与浏览方式，问答入口处理访问过程中的常见障碍。</p>
+        <p>与一次性发布的页面不同，聚集地入口的价值在于稳定。每天打开同一个地址，就能看到当天整理好的入口位置，不必每次重新搜索。页面把入口编号固定下来，编号顺序即阅读顺序，新访问者按 01 到 04 依次点击，基本可以覆盖一次完整浏览所需的信息。</p>
+        <p>mdrs 每日大赛的聚集地内容以短条目为主，强调当天可看、可查。因此本页在排版上保留了大量留白与清晰的标题层级，避免信息堆叠造成的阅读疲劳。若你只想拿到入口，首屏按钮与顶部导航都可以一步到达；若你想先了解结构，说明区块提供了完整脉络。</p>
+      </div>
+      <aside class="aside-box" aria-label="聚集地要点">
+        <h3>浏览要点</h3>
+        <ul>
+          <li>入口编号即阅读顺序，建议从 01 开始。</li>
+          <li>聚集地按日更新，同一天内入口位置保持不变。</li>
+          <li>说明区块优先回答“这是什么”，再引导进入内容。</li>
+          <li>手机端首屏直接显示主题与入口按钮，装饰图形后置。</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="search">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">快速查找</span>
+        <h2>在入口目录中查找</h2>
+        <p>输入关键词可以筛选上方入口目录中的条目，例如“热点”“规则”“问题”。筛选只作用于本页已列出的入口，不会跳转到外部。</p>
+      </div>
+      <div class="searchbar">
+        <label class="skip" for="entrySearch">搜索入口</label>
+        <input id="entrySearch" type="search" placeholder="输入入口关键词，如：热点 / 规则 / 问题" autocomplete="off">
+        <button type="button" id="searchBtn">筛选</button>
+      </div>
+      <p id="searchHint" aria-live="polite">当前显示全部 4 条入口。</p>
+    </div>
+  </section>
+
+  <section id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">访问须知</span>
+        <h2>访问 r星每日大赛mdrs聚集地入口 前需要知道的几件事</h2>
+        <p>以下内容说明入口的适用范围与使用限制，帮助你判断当前入口是否符合自己的访问目的。</p>
+      </div>
+      <div class="notes">
+        <div class="note">
+          <h3>入口的定位是导航</h3>
+          <p>本页负责把 mdrs 每日大赛的聚集地入口分类列清楚，本身不存放聚集地内容。点击入口后进入的是对应说明区块，后续内容以实际入口页面为准。</p>
+        </div>
+        <div class="note">
+          <h3>每日更新以页面实际为准</h3>
+          <p>聚集地按日更新，具体条目、数量与排列会随之变化。本页不承诺某一天的具体条目内容，只保证入口结构的稳定性。</p>
+        </div>
+        <div class="note">
+          <h3>移动端优先展示主题</h3>
+          <p>手机访问时，首屏优先呈现 H1 与入口按钮，插画与统计信息排在后面，保证小屏用户第一眼看到的是主题本身而非装饰。</p>
+        </div>
+        <div class="note">
+          <h3>遇到入口打不开怎么办</h3>
+          <p>先刷新页面并确认网络通畅；若仍无法打开，可回到本页通过导航切换其他分类入口，或查看常见问题区块中的对应说明。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">常见问题</span>
+        <h2>关于聚集地入口的常见疑问</h2>
+        <p>问题来自访问者在寻找 r星每日大赛mdrs聚集地入口 时最常提出的几类情况，答案只覆盖本页能够确认的范围。</p>
+      </div>
+      <div class="entries">
+        <div class="entry">
+          <span class="num">Q1</span>
+          <div>
+            <h3>为什么每天看到的入口结构一样？</h3>
+            <p>入口编号与分类是固定的导航骨架，变化的是每个入口背后的当日条目。稳定结构是为了让重复访问的人不用重新学习页面。</p>
+          </div>
+          <a class="go" href="#what">看说明</a>
+        </div>
+        <div class="entry">
+          <span class="num">Q2</span>
+          <div>
+            <h3>mdrs 与每日大赛是什么关系？</h3>
+            <p>mdrs 是本页描述聚集地时使用的名称，与“每日大赛”共同指向同一个按日更新的聚集地。页面中两者并列出现，指代同一入口体系。</p>
+          </div>
+          <a class="go" href="#entries">回目录</a>
+        </div>
+        <div class="entry">
+          <span class="num">Q3</span>
+          <div>
+            <h3>可以只收藏主入口吗？</h3>
+            <p>可以。主入口对应当日更新，是 r星每日大赛mdrs聚集地入口 中最常使用的一条。收藏本页后，从首屏按钮即可一步回到主入口位置。</p>
+          </div>
+          <a class="go" href="#main">回首屏</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <strong>r星每日大赛mdrs聚集地入口</strong>
+        <p style="margin:0;">一个按日维护的聚集地入口导航页，把 mdrs 每日大赛的主入口、热点入口、规则说明与常见问题集中在一页之内，方便重复访问与快速定位。</p>
+      </div>
+      <nav class="foot-nav" aria-label="页尾导航">
+        <a href="#main">首页</a>
+        <a href="#entries">入口目录</a>
+        <a href="#what">聚集地说明</a>
+        <a href="#search">快速查找</a>
+        <a href="#notes">访问须知</a>
+        <a href="#faq">常见问题</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© r星每日大赛mdrs聚集地入口 · 入口导航页</span>
+      <span>内容以页面实际更新为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var input = document.getElementById('entrySearch');
+  var btn = document.getElementById('searchBtn');
+  var hint = document.getElementById('searchHint');
+  var list = document.getElementById('entryList');
+  var items = list ? list.querySelectorAll('.entry') : [];
+
+  function runFilter(){
+    var q = (input.value || '').trim().toLowerCase();
+    var shown = 0;
+    items.forEach(function(el){
+      var text = el.textContent.toLowerCase();
+      var ok = !q || text.indexOf(q) !== -1;
+      el.classList.toggle('hidden', !ok);
+      if(ok) shown++;
+    });
+    if(!q){
+      hint.textContent = '当前显示全部 ' + items.length + ' 条入口。';
+    }else if(shown === 0){
+      hint.textContent = '没有匹配“' + q + '”的入口，可尝试“热点”“规则”“问题”等关键词。';
+    }else{
+      hint.textContent = '匹配“' + q + '”的入口共 ' + shown + ' 条。';
+    }
+  }
+
+  if(btn){ btn.addEventListener('click', runFilter); }
+  if(input){
+    input.addEventListener('input', runFilter);
+    input.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); runFilter(); }
+    });
+  }
+})();
+</script>
+</body>
+    </html>
