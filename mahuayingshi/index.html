@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>麻花影视-麻花影视在线观影_影视资源聚合与片单浏览</title>
+<meta name="description" content="麻花影视首页：聚合电影、剧集、综艺与纪录片的浏览入口，提供分类片单、热门推荐与题材筛选，帮助观众快速找到想看的影视内容。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1a2e'/%3E%3Cpath d='M26 18l20 14-20 14z' fill='%23f5b942'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --ink:#1b1a2e;
+    --ink-2:#2c2b45;
+    --paper:#f7f5f0;
+    --paper-2:#fffdf8;
+    --gold:#e0a52e;
+    --gold-soft:#f5d89a;
+    --rose:#b8445a;
+    --line:#e2ddd2;
+    --muted:#6d6a63;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
+    font-size:16px;
+    line-height:1.75;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3{margin:0;line-height:1.3;font-weight:700;}
+  p{margin:0 0 1em;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding:0 22px;}
+
+  /* ---------- header ---------- */
+  .site-head{
+    background:var(--ink);
+    color:#f4f1e8;
+    position:sticky;top:0;z-index:50;
+    border-bottom:3px solid var(--gold);
+  }
+  .head-inner{
+    display:flex;align-items:center;gap:18px;
+    min-height:66px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
+  .brand-mark{
+    width:36px;height:36px;border-radius:10px;
+    background:linear-gradient(145deg,#f5b942,#c9821e);
+    display:grid;place-items:center;
+    box-shadow:0 2px 0 rgba(0,0,0,.25);
+  }
+  .brand-mark svg{width:20px;height:20px;}
+  .brand-name{
+    font-size:1.18rem;font-weight:800;letter-spacing:.5px;
+    color:#fff;
+  }
+  .nav{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap;}
+  .nav a{
+    padding:7px 12px;border-radius:8px;font-size:.92rem;color:#d9d5c8;
+    transition:background .18s,color .18s;
+  }
+  .nav a:hover,.nav a:focus-visible{background:rgba(245,185,66,.16);color:#fff;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:
+      radial-gradient(900px 320px at 85% -10%, rgba(224,165,46,.28), transparent 70%),
+      linear-gradient(160deg,#211f38 0%,#1b1a2e 55%,#262338 100%);
+    color:#f6f2e7;
+    padding:46px 0 40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";position:absolute;right:-60px;bottom:-90px;
+    width:340px;height:340px;border-radius:50%;
+    border:1px dashed rgba(245,216,154,.28);
+    pointer-events:none;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:38px;align-items:center;}
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(245,185,66,.15);
+    border:1px solid rgba(245,185,66,.42);
+    color:var(--gold-soft);
+    font-size:.8rem;letter-spacing:1px;
+    padding:4px 12px;border-radius:999px;margin-bottom:16px;
+  }
+  h1{
+    font-size:clamp(1.9rem,4.6vw,2.9rem);
+    letter-spacing:1px;
+    color:#fff;
+    margin-bottom:14px;
+  }
+  h1 .hl{
+    color:var(--gold);
+    text-decoration:underline;
+    text-decoration-color:rgba(224,165,46,.45);
+    text-underline-offset:7px;
+  }
+  .hero-lead{color:#d5d0c2;max-width:36em;margin-bottom:22px;}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 20px;border-radius:10px;
+    font-size:.95rem;font-weight:600;border:1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-main{background:var(--gold);color:#231c0c;box-shadow:0 3px 0 #a9741a;}
+  .btn-main:hover{background:#efb748;}
+  .btn-ghost{border-color:rgba(245,216,154,.45);color:#f3ecd9;}
+  .btn-ghost:hover{background:rgba(245,216,154,.12);}
+  .btn[aria-disabled="true"]{opacity:.85;pointer-events:none;}
+  .hero-facts{
+    display:flex;gap:26px;margin-top:26px;flex-wrap:wrap;
+    border-top:1px solid rgba(245,216,154,.2);padding-top:18px;
+  }
+  .fact b{display:block;font-size:1.35rem;color:var(--gold-soft);line-height:1.2;}
+  .fact span{font-size:.8rem;color:#a9a498;letter-spacing:.5px;}
+
+  /* poster stack */
+  .poster-stack{position:relative;height:270px;}
+  .poster{
+    position:absolute;width:132px;height:190px;border-radius:12px;
+    border:1px solid rgba(255,255,255,.14);
+    box-shadow:0 16px 30px rgba(0,0,0,.42);
+    overflow:hidden;
+    background:#2f2c47;
+  }
+  .poster:nth-child(1){left:6%;top:26px;transform:rotate(-7deg);background:linear-gradient(160deg,#b8445a,#5c2033);}
+  .poster:nth-child(2){left:32%;top:0;transform:rotate(1deg);z-index:3;background:linear-gradient(160deg,#e0a52e,#8a5b12);}
+  .poster:nth-child(3){right:2%;top:34px;transform:rotate(8deg);background:linear-gradient(160deg,#3c5f8a,#1d3049);}
+  .poster svg{position:absolute;inset:0;width:100%;height:100%;}
+  .poster em{
+    position:absolute;left:10px;bottom:9px;font-style:normal;
+    font-size:.72rem;color:rgba(255,255,255,.92);letter-spacing:.5px;
+  }
+
+  /* ---------- sections ---------- */
+  section{padding:48px 0;}
+  .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap;}
+  .sec-head h2{font-size:1.45rem;letter-spacing:.5px;}
+  .sec-head h2 small{
+    display:block;font-size:.78rem;color:var(--muted);font-weight:400;
+    letter-spacing:1.5px;margin-top:4px;text-transform:uppercase;
+  }
+  .sec-head .more{font-size:.88rem;color:var(--rose);font-weight:600;}
+  .sec-head .more:hover{text-decoration:underline;}
+
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 20px 20px;
+    display:flex;flex-direction:column;
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(27,26,46,.09);}
+  .card .tag{
+    align-self:flex-start;font-size:.72rem;letter-spacing:1px;
+    background:rgba(184,68,90,.1);color:var(--rose);
+    padding:2px 9px;border-radius:5px;margin-bottom:12px;font-weight:600;
+  }
+  .card h3{font-size:1.06rem;margin-bottom:8px;}
+  .card p{font-size:.9rem;color:#4a4740;margin-bottom:14px;}
+  .card .meta{margin-top:auto;font-size:.78rem;color:var(--muted);letter-spacing:.5px;}
+
+  /* filter strip */
+  .browse{background:#f1eee6;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .chip{
+    border:1px solid var(--line);background:#fffdf8;
+    padding:6px 15px;border-radius:999px;font-size:.86rem;
+    color:#43403a;cursor:pointer;font-family:inherit;
+    transition:all .16s;
+  }
+  .chip:hover{border-color:var(--gold);}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#f6f2e7;border-color:var(--ink);}
+  .list-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .item{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:12px;
+    padding:14px 16px;display:flex;gap:14px;align-items:center;
+  }
+  .item .thumb{
+    width:46px;height:60px;border-radius:7px;flex:0 0 auto;
+    display:grid;place-items:center;color:#fff;font-size:.7rem;
+    letter-spacing:.5px;
+  }
+  .item h4{margin:0 0 3px;font-size:.98rem;font-weight:600;}
+  .item p{margin:0;font-size:.79rem;color:var(--muted);}
+  .item .score{margin-left:auto;font-weight:700;color:var(--gold);font-size:1rem;}
+  .empty-note{font-size:.86rem;color:var(--muted);padding:10px 2px;display:none;}
+
+  /* about / read */
+  .about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;}
+  .about-grid h2{font-size:1.45rem;margin-bottom:14px;}
+  .about-grid p{color:#44413a;font-size:.95rem;}
+  .side-box{
+    background:var(--ink);color:#e8e3d5;border-radius:var(--radius);
+    padding:24px 22px;border-bottom:4px solid var(--gold);
+  }
+  .side-box h3{font-size:1rem;color:var(--gold-soft);margin-bottom:12px;letter-spacing:.5px;}
+  .side-box ol{margin:0;padding-left:18px;font-size:.9rem;}
+  .side-box li{margin-bottom:9px;color:#cdc8ba;}
+  .side-box li b{color:#fff;font-weight:600;}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s;}
+  .step{
+    background:var(--paper-2);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px;position:relative;
+  }
+  .step::before{
+    counter-increment:s;content:"0" counter(s);
+    font-size:1.6rem;font-weight:800;color:var(--gold-soft);
+    display:block;margin-bottom:6px;letter-spacing:1px;
+  }
+  .step h4{margin:0 0 6px;font-size:.98rem;}
+  .step p{font-size:.86rem;color:#4a4740;margin:0;}
+
+  /* footer */
+  .site-foot{background:var(--ink);color:#b9b4a6;padding:38px 0 26px;margin-top:12px;}
+  .foot-grid{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;}
+  .foot-brand{font-size:1.05rem;font-weight:800;color:#fff;margin-bottom:8px;}
+  .foot-note{font-size:.82rem;max-width:34em;line-height:1.7;}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;font-size:.85rem;}
+  .foot-links a:hover{color:var(--gold-soft);}
+  .foot-bottom{
+    margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.1);
+    font-size:.78rem;color:#8b8779;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  }
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .poster-stack{height:210px;order:-1;max-width:330px;}
+    .poster{width:104px;height:150px;}
+    .card-grid,.steps{grid-template-columns:1fr 1fr;}
+    .about-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:640px){
+    body{font-size:15.5px;}
+    .head-inner{flex-wrap:wrap;padding:10px 0;min-height:0;gap:8px;}
+    .nav{margin-left:0;width:100%;justify-content:flex-start;gap:2px;}
+    .nav a{padding:6px 9px;font-size:.85rem;}
+    .hero{padding:34px 0 30px;}
+    .card-grid,.steps,.list-grid{grid-template-columns:1fr;}
+    .poster-stack{height:180px;}
+    .poster{width:92px;height:134px;}
+    .hero-facts{gap:18px;}
+    section{padding:36px 0;}
+    .foot-bottom{flex-direction:column;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="麻花影视 首页">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5l11 7-11 7z" fill="#231c0c"/></svg>
+      </span>
+      <span class="brand-name">麻花影视</span>
+    </a>
+    <nav class="nav" aria-label="主导航">
+      <a href="#picks">精选片单</a>
+      <a href="#browse">分类浏览</a>
+      <a href="#about">关于本站</a>
+      <a href="#guide">使用方式</a>
+      <a href="#foot">联系与声明</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="kicker">影视浏览 · 片单聚合</span>
+        <h1>麻花影视</h1>
+        <p class="hero-lead">
+          麻花影视是一个面向观影者的影视内容浏览入口，把电影、剧集、综艺和纪录片按题材与热度归纳成可翻阅的片单。你可以先看本周精选，再按类型进入分类页，逐步缩小范围，找到今晚想看的那一部。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-main" href="#picks">查看精选片单</a>
+          <a class="btn btn-ghost" href="#browse">按题材筛选</a>
+        </div>
+        <div class="hero-facts">
+          <div class="fact"><b>4</b><span>内容大类</span></div>
+          <div class="fact"><b>6</b><span>题材标签</span></div>
+          <div class="fact"><b>每周</b><span>片单更新</span></div>
+        </div>
+      </div>
+      <div class="poster-stack" aria-hidden="true">
+        <div class="poster">
+          <svg viewBox="0 0 132 190" preserveAspectRatio="none">
+            <circle cx="98" cy="42" r="34" fill="rgba(255,255,255,.10)"/>
+            <rect x="14" y="112" width="72" height="6" rx="3" fill="rgba(255,255,255,.35)"/>
+            <rect x="14" y="126" width="46" height="6" rx="3" fill="rgba(255,255,255,.20)"/>
+          </svg>
+          <em>剧情</em>
+        </div>
+        <div class="poster">
+          <svg viewBox="0 0 132 190" preserveAspectRatio="none">
+            <path d="M0 150 L44 96 L78 132 L132 74 L132 190 L0 190 Z" fill="rgba(0,0,0,.22)"/>
+            <circle cx="34" cy="46" r="14" fill="rgba(255,255,255,.55)"/>
+          </svg>
+          <em>纪录</em>
+        </div>
+        <div class="poster">
+          <svg viewBox="0 0 132 190" preserveAspectRatio="none">
+            <rect x="20" y="34" width="92" height="58" rx="6" fill="rgba(255,255,255,.14)"/>
+            <rect x="20" y="108" width="60" height="6" rx="3" fill="rgba(255,255,255,.32)"/>
+            <rect x="20" y="122" width="80" height="6" rx="3" fill="rgba(255,255,255,.18)"/>
+          </svg>
+          <em>剧集</em>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="picks">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>本周精选片单<small>Editor's Picks</small></h2>
+        <a class="more" href="#browse">查看全部分类 →</a>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <span class="tag">电影</span>
+          <h3>城市夜行</h3>
+          <p>以夜间城市为背景的剧情长片合集，侧重叙事节奏与人物关系，适合想安静看完一部的观众。</p>
+          <span class="meta">剧情 · 都市 · 长片</span>
+        </article>
+        <article class="card">
+          <span class="tag">剧集</span>
+          <h3>长线叙事</h3>
+          <p>多集连续剧的入门片单，每部控制在二十集以内，方便按周追看，不必担心篇幅过长。</p>
+          <span class="meta">连续剧 · 短篇 · 连载</span>
+        </article>
+        <article class="card">
+          <span class="tag">纪录片</span>
+          <h3>日常观察</h3>
+          <p>记录普通职业与生活现场的纪实作品，镜头克制、信息密度高，适合通勤或睡前分段观看。</p>
+          <span class="meta">纪实 · 人文 · 单集</span>
+        </article>
+        <article class="card">
+          <span class="tag">综艺</span>
+          <h3>轻松一集</h3>
+          <p>节奏轻快、单集独立的综艺节目汇总，适合作为背景播放，也可以只看感兴趣的片段。</p>
+          <span class="meta">综艺 · 单集 · 轻松</span>
+        </article>
+        <article class="card">
+          <span class="tag">电影</span>
+          <h3>悬疑入门</h3>
+          <p>结构清晰、线索明确的悬疑片，尽量避开强视觉冲击，适合第一次接触该类型的观众。</p>
+          <span class="meta">悬疑 · 推理 · 长片</span>
+        </article>
+        <article class="card">
+          <span class="tag">剧集</span>
+          <h3>家庭群像</h3>
+          <p>以家庭关系为核心的剧集片单，人物线较多，适合喜欢慢热铺垫的观众连续观看。</p>
+          <span class="meta">家庭 · 群像 · 连载</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="browse" class="browse">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>分类浏览<small>Browse by Genre</small></h2>
+        <span class="more" style="color:var(--muted);font-weight:400;font-size:.82rem;">点击标签即时筛选</span>
+      </div>
+      <div class="filter-bar" role="group" aria-label="题材筛选">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">全部</button>
+        <button class="chip" type="button" data-filter="剧情" aria-pressed="false">剧情</button>
+        <button class="chip" type="button" data-filter="悬疑" aria-pressed="false">悬疑</button>
+        <button class="chip" type="button" data-filter="纪录" aria-pressed="false">纪录</button>
+        <button class="chip" type="button" data-filter="综艺" aria-pressed="false">综艺</button>
+        <button class="chip" type="button" data-filter="家庭" aria-pressed="false">家庭</button>
+      </div>
+      <div class="list-grid" id="listGrid">
+        <div class="item" data-tag="剧情">
+          <span class="thumb" style="background:linear-gradient(160deg,#b8445a,#5c2033);">剧情</span>
+          <div><h4>城市夜行</h4><p>电影 · 剧情 · 都市</p></div>
+          <span class="score">8.6</span>
+        </div>
+        <div class="item" data-tag="悬疑">
+          <span class="thumb" style="background:linear-gradient(160deg,#3c5f8a,#1d3049);">悬疑</span>
+          <div><h4>线索尽头</h4><p>电影 · 悬疑 · 推理</p></div>
+          <span class="score">8.2</span>
+        </div>
+        <div class="item" data-tag="纪录">
+          <span class="thumb" style="background:linear-gradient(160deg,#4c7a5a,#1f3a29);">纪录</span>
+          <div><h4>日常观察</h4><p>纪录片 · 人文 · 纪实</p></div>
+          <span class="score">8.9</span>
+        </div>
+        <div class="item" data-tag="综艺">
+          <span class="thumb" style="background:linear-gradient(160deg,#e0a52e,#8a5b12);">综艺</span>
+          <div><h4>轻松一集</h4><p>综艺 · 单集 · 轻松</p></div>
+          <span class="score">7.8</span>
+        </div>
+        <div class="item" data-tag="家庭">
+          <span class="thumb" style="background:linear-gradient(160deg,#8a6a9a,#3c2a4a);">家庭</span>
+          <div><h4>家庭群像</h4><p>剧集 · 家庭 · 群像</p></div>
+          <span class="score">8.4</span>
+        </div>
+        <div class="item" data-tag="剧情">
+          <span class="thumb" style="background:linear-gradient(160deg,#b8445a,#5c2033);">剧情</span>
+          <div><h4>长线叙事</h4><p>剧集 · 连续剧 · 连载</p></div>
+          <span class="score">8.1</span>
+        </div>
+      </div>
+      <p class="empty-note" id="emptyNote">该题材下暂无收录条目，可切换其他标签继续浏览。</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2>麻花影视的内容组织方式</h2>
+        <p>
+          麻花影视不做单部作品的深度评论，而是把注意力放在“怎么找”这件事上。首页的精选片单按观看场景划分：想安静看一部、想按周追剧、想通勤时分段听看，分别对应不同的推荐组合。每个组合都会标注内容大类、常见篇幅和大致节奏，让你在点开之前就能判断是否合适。
+        </p>
+        <p>
+          分类浏览区提供剧情、悬疑、纪录、综艺、家庭五个题材标签。标签之间可以随时切换，筛选结果直接在当前页面呈现，不需要跳转。评分与题材信息用于横向比较，不代表作品质量的全部，只作为浏览时的参考坐标。
+        </p>
+        <p>
+          关于麻花影视的定位，需要说明一点：站内展示的是内容条目与分类信息，帮助观众建立自己的观看顺序。片单每周做一次归纳，遇到新上线或下架的条目，会在对应分类中同步调整。使用过程中如果发现信息有明显偏差，可以通过页尾的联系入口反馈。
+        </p>
+      </div>
+      <aside class="side-box">
+        <h3>浏览前先看三条</h3>
+        <ol>
+          <li><b>先定场景</b>：按“一次看完”或“分段追看”选择片单方向。</li>
+          <li><b>再看题材</b>：用分类标签把候选范围缩到一类。</li>
+          <li><b>最后比对</b>：参考篇幅、节奏与评分，决定观看顺序。</li>
+        </ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="guide">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>三步找到下一部<small>How It Works</small></h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h4>浏览精选片单</h4>
+          <p>从本周精选开始，六个卡片覆盖电影、剧集、纪录片与综艺，先建立大致方向。</p>
+        </div>
+        <div class="step">
+          <h4>用标签收窄范围</h4>
+          <p>在分类浏览区点选题材标签，列表即时过滤，评分与类型标签同时可见。</p>
+        </div>
+        <div class="step">
+          <h4>确定观看节奏</h4>
+          <p>根据条目标注的篇幅与连载状态，安排一次性看完或按周追看的顺序。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot" id="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">麻花影视</div>
+        <p class="foot-note">麻花影视以片单与分类浏览为主，页面内容为影视条目的归纳与索引，持续按周调整题材组合，方便观众按场景与类型查找内容。</p>
+      </div>
+      <nav class="foot-links" aria-label="页尾导航">
+        <a href="#picks">精选片单</a>
+        <a href="#browse">分类浏览</a>
+        <a href="#about">关于本站</a>
+        <a href="#guide">使用方式</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© 麻花影视 · 内容条目与分类信息仅供浏览参考</span>
+      <span>页面信息以当前收录为准</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var chips = document.querySelectorAll('.chip');
+  var items = document.querySelectorAll('#listGrid .item');
+  var empty = document.getElementById('emptyNote');
+  chips.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      chips.forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+      btn.setAttribute('aria-pressed','true');
+      var f = btn.getAttribute('data-filter');
+      var shown = 0;
+      items.forEach(function(it){
+        var ok = (f === 'all') || (it.getAttribute('data-tag') === f);
+        it.style.display = ok ? '' : 'none';
+        if(ok) shown++;
+      });
+      empty.style.display = shown ? 'none' : 'block';
+    });
+  });
+})();
+</script>
+</body>
+</html>
